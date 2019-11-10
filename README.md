@@ -39,6 +39,4 @@ npm run serve
 
 you shoud then see the following: 
 
-NEED TO UPDATE THIS
-
 ![Landing Page](landing_page.png)

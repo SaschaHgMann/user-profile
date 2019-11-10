@@ -40,13 +40,6 @@
         <!-- ------------------------------------------- -->
 
         <!-- Use the example above to help -->
-        <v-card>
-          <v-card-text class="text-center">
-            <h6 class="category text-gray mb-6">{{user.job_title}}</h6>
-            <h4 class="card-title font-weight-light">{{ user.company.name }}</h4>
-            <p class="card-description font-weight-light">{{ user.company.country }}, {{ user.company.address }}</p>
-          </v-card-text>
-        </v-card>
       </v-col>
     </v-row>
   </v-container>
