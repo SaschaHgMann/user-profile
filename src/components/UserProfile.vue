@@ -39,7 +39,7 @@
         <!-- VCard component with user secondary details -->
         <!-- ------------------------------------------- -->
 
-        <!-- Use the example above to help -->
+        <!-- Use the example above to help -->        
       </v-col>
     </v-row>
   </v-container>
