@@ -21,7 +21,7 @@ https://www.vuemastery.com/courses/beautify-with-vuetify/getting-started-with-vu
 
 All web applications have one very important feature in common: a page which shows user profile information. At the end of this project, you should be able to see and edit basic user information.
 
-Please see the following document explaining the instructions for this project: [User Profile Application Instructions](https://https://docs.google.com/document/d/14899MkIQAxVc5ZQJSqMQmggTPsOYJazIXKbb3Q4WhQ8/edit?usp=sharing)
+Please see the following document explaining the instructions for this project: [User Profile Application Instructions](https://docs.google.com/document/d/14899MkIQAxVc5ZQJSqMQmggTPsOYJazIXKbb3Q4WhQ8/edit?usp=sharing)
 
 ## Project setup
 
