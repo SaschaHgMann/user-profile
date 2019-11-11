@@ -38,6 +38,6 @@ When the install is finished, you can run the following,
 npm run serve
 ```
 
-you shoud then see the following: 
+you shoud then see the following at the url `http://localhost:8080`: 
 
 ![Landing Page](landing_page.png)
