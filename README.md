@@ -15,6 +15,7 @@ https://vuetifyjs.com/en/getting-started/quick-start
 **Introductory Videos:**
 
 https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/
+
 https://www.vuemastery.com/courses/beautify-with-vuetify/getting-started-with-vuetify/
 
 ## Instructions
