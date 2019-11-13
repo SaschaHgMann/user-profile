@@ -11,27 +11,33 @@
           
           <v-card-text class="text--primary">
             <v-text-field
+            outlined
               v-model="user.first_name"
               label="First Name"
             >
             </v-text-field>
             <v-text-field
+            outlined
               v-model="user.last_name"
               label="Last Name"
             >
             </v-text-field>
             <v-text-field
+            outlined
               v-model="user.email"
               label="Email"
             >
             </v-text-field>
             <v-text-field
+            outlined
               v-model="user.username"
               label="Username"
             >
             </v-text-field>
             <v-text-field
+            outlined
               v-model="user.password"
+              :value="user.password"
               label="Encrypted password"
               :type="showPassword ? 'text' : 'password'"
               :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
@@ -45,11 +51,20 @@
             <v-btn
               outlined
               text
+              color="success"
               @click="savePrimaryUserDetails(user.first_name)" 
             >
               Save
             </v-btn>
-
+            <v-spacer></v-spacer>
+            <v-btn
+              outlined
+              color="info"
+              text
+              @click="changePassword(user.password)" 
+            >
+              Change password
+            </v-btn>
             <!-- Add button to change password -->
             
           </v-card-actions>
@@ -72,9 +87,15 @@ export default {
   name: 'UserProfile',
   props: ['user'],
   data: () => ({
-
+   
   showPassword: false
 
   }),
+  methods: {
+    changePassword(event) {
+      this.user.password = event.target.value
+      this.$emit('passwordChanged', this.user.password)
+    }
+  }
 };
 </script>
