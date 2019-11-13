@@ -11,6 +11,7 @@
       <v-spacer></v-spacer>
 
       <v-avatar color="blue">
+        {{user.initials}}
         <!-- Add missing code to show the user initials in the avatar -->
         <span class="white--text headline"></span>
       </v-avatar>
