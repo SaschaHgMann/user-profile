@@ -15,9 +15,28 @@
               label="First Name"
             >
             </v-text-field>
+            <v-text-field
+              v-model="user.last_name"
+              label="Last Name"
+            >
+            </v-text-field>
+            <v-text-field
+              v-model="user.email"
+              label="Email"
+            >
+            </v-text-field>
+            <v-text-field
+              v-model="user.username"
+              label="Username"
+            >
+            </v-text-field>
+            <v-text-field
+              v-model="user.password"
+              label="Encrypted password"
+              type=password
+            >
+            </v-text-field>
 
-
-            <!-- Add the rest of the user details here -->
           </v-card-text>
 
           <v-card-actions>
