@@ -33,10 +33,11 @@
             <v-text-field
               v-model="user.password"
               label="Encrypted password"
-              type=password
+              :type="showPassword ? 'text' : 'password'"
+              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="showPassword = !showPassword"
             >
             </v-text-field>
-
           </v-card-text>
 
           <v-card-actions>
@@ -44,6 +45,7 @@
             <v-btn
               outlined
               text
+              @click="savePrimaryUserDetails(user.first_name)" 
             >
               Save
             </v-btn>
@@ -70,6 +72,9 @@ export default {
   name: 'UserProfile',
   props: ['user'],
   data: () => ({
+
+  showPassword: false
+
   }),
 };
 </script>
