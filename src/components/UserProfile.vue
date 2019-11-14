@@ -59,14 +59,15 @@
           </p>
 
           <div class="text-center">
-          <v-progress-circular
+            <v-progress-circular
               v-if="loading"
               indeterminate
               color="primary"
               :size="60"
               :width="5"              
-          ></v-progress-circular>
-         </div>
+            >
+            </v-progress-circular>
+          </div>
 
           <v-alert v-if="dataSubmitted" type="success" width="96%" class="mx-auto">
             Data saved!
@@ -111,7 +112,7 @@
             >
           </v-img>
           <v-card-subtitle>
-             {{user.job_title}}
+             <b>{{user.job_title}}</b>
           </v-card-subtitle>
           <hr width="90%" class="mx-auto">
           <p>
@@ -121,7 +122,22 @@
               {{user.company.country}}, {{user.company.address}}
           </p>
           <br>
-        </v-card>     
+        </v-card> 
+        <br>
+        <v-card class="text-center">
+          <v-card-subtitle class="text-cente" size="30px">
+            <b>Primary User Details</b>
+          </v-card-subtitle>
+          <v-card-subtitle>
+             <b>{{fullName}}</b>
+          </v-card-subtitle>
+          <v-card-subtitle>
+             <p>Username: {{user.username}}</p>
+             <p>Email: {{user.email}}</p>
+          </v-card-subtitle>
+          
+          <br>
+        </v-card>    
       </v-col>
     </v-row>
   </v-container>
@@ -141,15 +157,14 @@ export default {
 
   }),
 
-  methods: {
-  
-    onSavePrimaryUserDetails() {  
-           
-      if (this.user.first_name && this.user.last_name && this.user.email &&this.user.username &&
-          this.user.password) {          
-     
-              this.dataSaved()
-     
+  methods: {  
+    onSavePrimaryUserDetails() {            
+      if (this.user.first_name && 
+          this.user.last_name && 
+          this.user.email &&
+          this.user.username &&
+          this.user.password) {               
+              this.dataSaved()    
       }          
       else {
         if(!this.user.first_name) this.errors.push('Enter first name')
@@ -177,6 +192,11 @@ export default {
       }, 1000);
     }
 
+  },
+  computed: {
+    fullName() {
+      return this.user.first_name + ' ' + this.user.last_name
+    }
   }
   
 };
