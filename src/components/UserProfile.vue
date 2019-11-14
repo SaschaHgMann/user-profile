@@ -10,32 +10,39 @@
           <v-card-subtitle>Primary Details</v-card-subtitle>
           
           <v-card-text class="text--primary">
+            
             <v-text-field
             outlined
+            required
               v-model="user.first_name"
               label="First Name"
             >
             </v-text-field>
             <v-text-field
             outlined
+            required
               v-model="user.last_name"
               label="Last Name"
             >
             </v-text-field>
             <v-text-field
             outlined
+            required
               v-model="user.email"
               label="Email"
             >
             </v-text-field>
             <v-text-field
             outlined
+            required
               v-model="user.username"
               label="Username"
             >
             </v-text-field>
             <v-text-field
             outlined
+            required
+            ref="pw"
               v-model="user.password"
               :value="user.password"
               label="Encrypted password"
@@ -52,7 +59,7 @@
               outlined
               text
               color="success"
-              @click="savePrimaryUserDetails(user.first_name)" 
+              @click="onSavePrimaryUserDetails(user)" 
             >
               Save
             </v-btn>
@@ -61,7 +68,7 @@
               outlined
               color="info"
               text
-              @click="changePassword(user.password)" 
+              @click="onChangePassword(user.password)" 
             >
               Change password
             </v-btn>
@@ -88,14 +95,29 @@ export default {
   props: ['user'],
   data: () => ({
    
-  showPassword: false
-
+  showPassword: false,
+  errors:[]
   }),
   methods: {
-    changePassword(event) {
-      this.user.password = event.target.value
-      this.$emit('passwordChanged', this.user.password)
-    }
-  }
+
+      onSavePrimaryUserDetails() {
+      prompt('hello')
+    //   let primaryUserDetails = {
+    //     first_name: this.user.first_name,
+    //     last_name: this.user.last_name,
+    //     email: this.user.email,
+    //     username: this.user.username,
+    //     password: this.user.password,
+       },
+
+        onChangePassword() {
+        this.clearPassword()
+                },
+        clearPassword() {
+          var self = this;
+          self.user.password = '',
+          this.$refs.pw.focus()        }
+     }
+  
 };
 </script>
