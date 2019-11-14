@@ -54,8 +54,11 @@
             </ul>
           </p>
 
+          <!-- <p v-if="!errors.length">
+              <b>Data saved!</b>
+          </p> -->
+
           <v-card-actions>
-            <!-- Add save function to this button using @click -->
             <v-btn
               outlined
               text
@@ -73,7 +76,6 @@
             >
               Change password
             </v-btn>
-            <!-- Add button to change password -->
             
           </v-card-actions>
         </v-card>
@@ -97,6 +99,7 @@ export default {
   data: () => ({
    
   showPassword: false,
+  dataSaved: false,
   errors:[]
 
   }),
@@ -104,12 +107,17 @@ export default {
   methods: {
 
     onSavePrimaryUserDetails() {
+      
       if (this.user.first_name && 
           this.user.last_name && 
           this.user.email &&
           this.user.username &&
           this.user.password) {
-            prompt('hello')
+              //this.errors.push('')
+              //this.errors.refresh()
+              
+              //this.dataSaved = !dataSaved;
+              alert('Data Saved')
           }
       else {
         if(!this.user.first_name) this.errors.push('Enter first name')
@@ -118,19 +126,17 @@ export default {
         if(!this.user.username) this.errors.push('Enter a username')
         if(!this.user.password) this.errors.push('Enter password')
       }
-    
+      
+    },
     //set timeout
     //set confirmation
-
-       },
-
      onChangePassword() {
       this.clearPassword()
         },
-      clearPassword() {
-        var self = this;
-        self.user.password = '',
-        this.$refs.pw.focus()
+        clearPassword() {
+          var self = this;
+          self.user.password = '',
+          this.$refs.pw.focus()
         }
      }
   
