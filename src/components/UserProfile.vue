@@ -75,8 +75,7 @@
               @click="onChangePassword(user.password)" 
             >
               Change password
-            </v-btn>
-            
+            </v-btn>            
           </v-card-actions>
         </v-card>
       </v-col>
@@ -85,7 +84,26 @@
         <!-- ------------------------------------------- -->
         <!-- VCard component with user secondary details -->
         <!-- ------------------------------------------- -->
-
+        <v-card class="text-center ">
+          <v-img 
+            src="https://live.staticflickr.com/5463/16876873654_3a15d1cdc4_b.jpg"
+            width="200px"
+            alt="Profile Image"
+            class="mx-auto"
+            >
+          </v-img>
+          <v-card-subtitle>
+             {{user.job_title}}
+          </v-card-subtitle>
+          <hr width="90%" class="mx-auto">
+          <p>
+          <p>
+             {{user.company.name}}
+          <br>
+              {{user.company.country}}, {{user.company.address}}
+          </p>
+          <br>
+        </v-card>
         <!-- Use the example above to help -->        
       </v-col>
     </v-row>
