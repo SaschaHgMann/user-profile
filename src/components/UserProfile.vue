@@ -7,36 +7,40 @@
         <!-- ------------------------------------------ -->
         <v-card>
           <v-card-title>User Profile</v-card-title>
-          <v-card-subtitle>Primary Details</v-card-subtitle>
-          
-          <v-card-text class="text--primary">
-            
+          <v-card-subtitle>Primary Details</v-card-subtitle>         
+          <v-card-text class="text--primary">            
             <v-text-field
               outlined
+              @focus="dataGood=true"
               v-model="user.first_name"
-              label="First Name"
+              label="First Name"             
             >
             </v-text-field>
+            <!-- tried @change also but prefer @focus due to ux -->
             <v-text-field
               outlined
+              @change="dataGood=true"           
               v-model="user.last_name"
               label="Last Name"
             >
             </v-text-field>
             <v-text-field
               outlined
+              @focus="dataGood=true"
               v-model="user.email"
               label="Email"
             >
             </v-text-field>
             <v-text-field
               outlined
+              @focus="dataGood=true"
               v-model="user.username"
               label="Username"
             >
             </v-text-field>
             <v-text-field
               outlined
+              @focus="dataGood=true"
               ref="pw"
               v-model="user.password"
               label="Encrypted password"
@@ -47,26 +51,40 @@
             </v-text-field>
           </v-card-text>
 
-          <p v-if="errors.length">
+          <p v-if="errors.length" class="mx-auto">
             <b>!! Please correct following entry/entries !!</b>
             <ul>
               <li v-for="error in errors" :key="error"> {{error}} </li>
             </ul>
           </p>
 
-          <!-- <p v-if="!errors.length">
-              <b>Data saved!</b>
-          </p> -->
+          <div class="text-center">
+          <v-progress-circular
+              v-if="loading"
+              indeterminate
+              color="primary"
+              :size="60"
+              :width="5"              
+          ></v-progress-circular>
+         </div>
+
+          <v-alert v-if="dataSubmitted" type="success" width="96%" class="mx-auto">
+            Data saved!
+          </v-alert>
 
           <v-card-actions>
             <v-btn
+              :class="{ active: dataGood }"
+              :disabled="dataSubmitted || loading"
+              v-if="dataGood"
               outlined
               text
               color="success"
-              @click="onSavePrimaryUserDetails(user)" 
+              @click="onSavePrimaryUserDetails(user, data)" 
             >
               Save
             </v-btn>
+            
             <v-spacer></v-spacer>
             <v-btn
               outlined
@@ -103,8 +121,7 @@
               {{user.company.country}}, {{user.company.address}}
           </p>
           <br>
-        </v-card>
-        <!-- Use the example above to help -->        
+        </v-card>     
       </v-col>
     </v-row>
   </v-container>
@@ -117,46 +134,50 @@ export default {
   data: () => ({
    
   showPassword: false,
-  dataSaved: false,
+  dataGood: false,
+  loading: false,
+  dataSubmitted: false,
   errors:[]
 
   }),
 
   methods: {
-
-    onSavePrimaryUserDetails() {
-      
-      if (this.user.first_name && 
-          this.user.last_name && 
-          this.user.email &&
-          this.user.username &&
-          this.user.password) {
-              //this.errors.push('')
-              //this.errors.refresh()
-              
-              //this.dataSaved = !dataSaved;
-              alert('Data Saved')
-          }
+  
+    onSavePrimaryUserDetails() {  
+           
+      if (this.user.first_name && this.user.last_name && this.user.email &&this.user.username &&
+          this.user.password) {          
+     
+              this.dataSaved()
+     
+      }          
       else {
         if(!this.user.first_name) this.errors.push('Enter first name')
         if(!this.user.last_name) this.errors.push('Enter last name')
         if(!this.user.email) this.errors.push('Enter email')
         if(!this.user.username) this.errors.push('Enter a username')
         if(!this.user.password) this.errors.push('Enter password')
-      }
-      
+      } 
     },
-    //set timeout
-    //set confirmation
-     onChangePassword() {
+
+    onChangePassword() {
       this.clearPassword()
-        },
-        clearPassword() {
-          var self = this;
-          self.user.password = '',
-          this.$refs.pw.focus()
-        }
-     }
+    },
+    clearPassword() {
+      var self = this;
+      self.user.password = '',
+      this.$refs.pw.focus(),
+      this.dataSubmitted = false    
+    },
+    dataSaved(){
+      this.errors = '',
+      this.loading = true,      
+      setTimeout(() => {(
+        this.dataSubmitted = true, this.loading = false);
+      }, 1000);
+    }
+
+  }
   
 };
 </script>
