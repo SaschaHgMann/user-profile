@@ -12,39 +12,33 @@
           <v-card-text class="text--primary">
             
             <v-text-field
-            outlined
-            required
+              outlined
               v-model="user.first_name"
               label="First Name"
             >
             </v-text-field>
             <v-text-field
-            outlined
-            required
+              outlined
               v-model="user.last_name"
               label="Last Name"
             >
             </v-text-field>
             <v-text-field
-            outlined
-            required
+              outlined
               v-model="user.email"
               label="Email"
             >
             </v-text-field>
             <v-text-field
-            outlined
-            required
+              outlined
               v-model="user.username"
               label="Username"
             >
             </v-text-field>
             <v-text-field
-            outlined
-            required
-            ref="pw"
+              outlined
+              ref="pw"
               v-model="user.password"
-              :value="user.password"
               label="Encrypted password"
               :type="showPassword ? 'text' : 'password'"
               :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
@@ -52,6 +46,13 @@
             >
             </v-text-field>
           </v-card-text>
+
+          <p v-if="errors.length">
+            <b>!! Please correct following entry/entries !!</b>
+            <ul>
+              <li v-for="error in errors" :key="error"> {{error}} </li>
+            </ul>
+          </p>
 
           <v-card-actions>
             <!-- Add save function to this button using @click -->
@@ -97,26 +98,40 @@ export default {
    
   showPassword: false,
   errors:[]
+
   }),
+
   methods: {
 
-      onSavePrimaryUserDetails() {
-      prompt('hello')
-    //   let primaryUserDetails = {
-    //     first_name: this.user.first_name,
-    //     last_name: this.user.last_name,
-    //     email: this.user.email,
-    //     username: this.user.username,
-    //     password: this.user.password,
+    onSavePrimaryUserDetails() {
+      if (this.user.first_name && 
+          this.user.last_name && 
+          this.user.email &&
+          this.user.username &&
+          this.user.password) {
+            prompt('hello')
+          }
+      else {
+        if(!this.user.first_name) this.errors.push('Enter first name')
+        if(!this.user.last_name) this.errors.push('Enter last name')
+        if(!this.user.email) this.errors.push('Enter email')
+        if(!this.user.username) this.errors.push('Enter a username')
+        if(!this.user.password) this.errors.push('Enter password')
+      }
+    
+    //set timeout
+    //set confirmation
+
        },
 
-        onChangePassword() {
-        this.clearPassword()
-                },
-        clearPassword() {
-          var self = this;
-          self.user.password = '',
-          this.$refs.pw.focus()        }
+     onChangePassword() {
+      this.clearPassword()
+        },
+      clearPassword() {
+        var self = this;
+        self.user.password = '',
+        this.$refs.pw.focus()
+        }
      }
   
 };
