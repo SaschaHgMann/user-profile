@@ -11,7 +11,7 @@
           <v-card-text class="text--primary">            
             <v-text-field
               outlined
-              @focus="dataGood=true"
+              @focus="onChangeEntry()"
               v-model="user.first_name"
               label="First Name"             
             >
@@ -19,28 +19,28 @@
             <!-- tried @change also but prefer @focus due to ux -->
             <v-text-field
               outlined
-              @change="dataGood=true"           
+              @change="onChangeEntry()"           
               v-model="user.last_name"
               label="Last Name"
             >
             </v-text-field>
             <v-text-field
               outlined
-              @focus="dataGood=true"
+              @focus="onChangeEntry()"
               v-model="user.email"
               label="Email"
             >
             </v-text-field>
             <v-text-field
               outlined
-              @focus="dataGood=true"
+              @focus="onChangeEntry()"
               v-model="user.username"
               label="Username"
             >
             </v-text-field>
             <v-text-field
               outlined
-              @focus="dataGood=true"
+              @focus="onChangeEntry()"
               ref="pw"
               v-model="user.password"
               label="Encrypted password"
@@ -51,12 +51,12 @@
             </v-text-field>
           </v-card-text>
 
-          <p v-if="errors.length" class="mx-auto">
+          <v-alert v-if="errors.length" type="error" width="96%" class="mx-auto">
             <b>!! Please correct following entry/entries !!</b>
             <ul>
               <li v-for="error in errors" :key="error"> {{error}} </li>
             </ul>
-          </p>
+          </v-alert>
 
           <div class="text-center">
             <v-progress-circular
@@ -147,14 +147,13 @@
 export default {
   name: 'UserProfile',
   props: ['user'],
-  data: () => ({
-   
+  
+  data: () => ({   
   showPassword: false,
   dataGood: false,
   loading: false,
   dataSubmitted: false,
   errors:[]
-
   }),
 
   methods: {  
@@ -190,6 +189,10 @@ export default {
       setTimeout(() => {(
         this.dataSubmitted = true, this.loading = false);
       }, 1000);
+    },
+    onChangeEntry(){
+      this.dataGood = true,
+      this.dataSubmitted = false
     }
 
   },
