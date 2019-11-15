@@ -104,29 +104,33 @@
         <!-- VCard component with user secondary details -->
         <!-- ------------------------------------------- -->
         <v-card class="text-center ">
+          <v-avatar width="200px" height=auto>
           <v-img 
-            src="https://live.staticflickr.com/5463/16876873654_3a15d1cdc4_b.jpg"
-            width="200px"
+            src="https://live.staticflickr.com/5463/16876873654_3a15d1cdc4_b.jpg"           
             alt="Profile Image"
             class="mx-auto"
             >
           </v-img>
+          </v-avatar>
           <v-card-subtitle>
              <b>{{user.job_title}}</b>
           </v-card-subtitle>
           <hr width="90%" class="mx-auto">
-          <p>
+        
+          <v-card-text>
           <p>
              {{user.company.name}}
           <br>
               {{user.company.country}}, {{user.company.address}}
           </p>
+          </v-card-text>
           <br>
         </v-card> 
         <br>
         <v-card class="text-center">
-          <v-card-subtitle class="text-cente" size="30px">
-            <b>Primary User Details</b>
+        
+          <v-card-subtitle class="text-center" font-size="30px">
+            <h2>Primary User Details</h2>
           </v-card-subtitle>
           <v-card-subtitle>
              <b>{{fullName}}</b>
@@ -134,8 +138,7 @@
           <v-card-subtitle>
              <p>Username: {{user.username}}</p>
              <p>Email: {{user.email}}</p>
-          </v-card-subtitle>
-          
+          </v-card-subtitle>          
           <br>
         </v-card>    
       </v-col>
