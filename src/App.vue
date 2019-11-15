@@ -11,8 +11,7 @@
       <v-spacer></v-spacer>
 
       <v-avatar color="blue">
-        {{user.initials}}
-   
+        {{user.initials}}  
         <span class="white--text headline"></span>
       </v-avatar>
     </v-app-bar>
